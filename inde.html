@@ -2,139 +2,229 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hoja de Vida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Hoja de Vida</title>
     <style>
+        /* CSS: Estilos y Diseño */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
 
-        .container {
-            width: 80%;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
 
-        .header {
+        /* Encabezado: Foto y Nombre */
+        header {
             display: flex;
             align-items: center;
-            border-bottom: 2px solid #ddd;
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
-        .photo {
+        .photo-container img {
             width: 150px;
-            height: 180px;
-            margin-right: 25px;
-        }
-
-        .photo img {
-            width: 100%;
-            height: 100%;
+            height: 150px;
+            border-radius: 50%;
             object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #ccc;
+            border: 4px solid var(--bg-color);
         }
 
-        .info h1 {
+        .name-container {
+            margin-left: 30px;
+        }
+
+        .name-container h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
         }
 
-        .info p {
-            margin: 5px 0;
-            color: #555;
+        /* Presentación */
+        .summary {
+            margin-bottom: 30px;
+            font-style: italic;
+            color: var(--secondary-color);
         }
 
-        .section {
-            margin-top: 25px;
+        /* Cuerpo Central */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
 
-        .section h2 {
-            color: #333;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
+        h2 {
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            font-size: 1.2rem;
         }
 
-        .section ul {
+        .section { margin-bottom: 20px; }
+
+        .item { margin-bottom: 15px; }
+
+        .item h3 { margin: 0; font-size: 1.1rem; }
+
+        .date { font-size: 0.9rem; color: #7f8c8d; }
+
+        /* Habilidades e Idiomas */
+        .skills-list, .languages-list {
             list-style: none;
             padding: 0;
         }
 
-        .section ul li {
-            margin-bottom: 8px;
+        .skills-list li, .languages-list li {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Botón de Interacción (JS) */
+        .contact-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-btn:hover { background: #2980b9; }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; }
+            .name-container { margin-left: 0; margin-top: 15px; }
+            .main-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-
-        <!-- Encabezado -->
-        <div class="header">
-            <div class="photo">
-                <img src="foto.jpg" alt="Foto de perfil">
+    <div class="resume-container">
+        <header>
+            <div class="photo-container">
+                <img src="imagenn.jpeg" alt="Foto de Perfil" id="profile-pic">
             </div>
-            <div class="info">
-                <h1>Andres Felipe Campos Lozano</h1>
-                <p><strong>Perfil profesional:</strong></p>
-                <p>Tecnólogo en Desarrollo de Sistemas de Información y Software, con experiencia en soporte técnico, administración de sistemas y desarrollo web. Comprometido, responsable y orientado a resultados.</p>
+            <div class="name-container">
+                <h1 id="user-name"></h1>
+                <p>Tecnólogo en Desarrollo de Sistemas de Información y Software e Ingeniería Mecatrónica. </p>
+                <button class="contact-btn" onclick="mostrarMensaje()">Contactar</button>
+            </div>
+        </header>
+
+        <section class="summary">
+            <h2>Sobre Mí</h2>
+            <p>Experiencia de más de un año en soporte técnico de sistemas brindando soluciones efectivas en hardware, software y formación a usuarios.
+Soy una persona muy curiosa, con alta capacidad de aprendizaje autónomo, apasionado por la tecnología. Me gusta explorar y comprender nuevas herramientas o sistemas por iniciativa propia. Tengo orientación al servicio, buena comunicación y me interesa seguir desarrollándome en empresas o áreas de tecnología, sistemas y desarrollo de software.
+Plataformas, herramientas y lenguajes: Outlook, Teams, OneDrive, software contable (STONE), C++, JAVA, Python, OneShape, Autocad, Solidworks.>
+        </section>
+
+        <div class="main-content">
+            <div class="left-col">
+                <section class="section">
+                    <h2>Experiencia Laboral</h2>
+                    <div class="item">
+                        <h3>Auxiliar soporte técnico en tecnología COOMOTOR</h3>
+                        <span class="date">Agosto 2022 - Marzo 2024</span>
+                        <p>Brindé soporte técnico presencial y remoto a equipos de cómputo y sistemas CCTV (cámaras de videovigilancia).
+•
+Formación y soporte a usuarios internos sobre el uso de herramientas colaborativas y software empresarial como: Outlook, Microsoft Teams y OneDrive, FISC, PXP, STONE (contable),
+•
+Instalación, mantenimiento y reparación de hardware conforme a manuales técnicos.
+•
+Instrucción personalizada a colaboradores sobre el uso adecuado de herramientas informáticas.
+•
+Generación de informes técnicos de mantenimiento y registro de incidencias (tickets - backlog) según normativa interna</p>
+                    </div>
+                    <div class="item">
+                        <h3>Práctica Empresarial – Soporte técnico en sistemas COOMOTOR </h3>
+                        <span class="date">Julio 2022 - Octubre 2022</span>
+                        <p>Mantener y Reparar equipos de cómputo según procedimiento técnico.
+•
+Instalar y ensamblar equipos de cómputo según manual y especificaciones técnicas.
+•
+Atender requerimientos de los usuarios de acuerdo con procedimientos técnicos y normativa vigente.
+•
+Registrar información de acuerdo con normativa y procedimiento técnico.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Formación Académica</h2>
+                    <div class="item">
+                        <h3>Tecnólogo en Desarrollo de Sistemas de Información y Software</h3>
+                        <p>Universidad Santiago de Cali 2024 – en curso</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-col">
+                <section class="section">
+                    <h2>Habilidades</h2>
+                    <ul class="skills-list">
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>React.js</li>
+                        <li>Node.js</li>
+                        <li>Git & GitHub</li>
+                    </ul>
+                </section>
+
+                <section class="section">
+                    <h2>Idiomas</h2>
+                    <ul class="languages-list">
+                        <li><strong>Español:</strong> Nativo</li>
+                        <li><strong>Inglés:</strong> C1 (Avanzado)</li>
+                        <li><strong>Francés:</strong> B1 (Intermedio)</li>
+                    </ul>
+                </section>
             </div>
         </div>
-
-        <!-- Formación académica -->
-        <div class="section">
-            <h2>Formación Académica</h2>
-            <ul>
-                <li><strong>Tecnología en Desarrollo de Sistemas de Información y Software</strong> – [Universidad Santiago de CALI</li>
-                <li><strong>Bachiller Académico</strong> – [Misael Pastrana Borrero]</li>
-            </ul>
-        </div>
-
-        <!-- Experiencia laboral -->
-        <div class="section">
-            <h2>Experiencia Laboral</h2>
-            <ul>
-                <li>
-                    <strong>Auxiliar de Sistemas</strong> – COOMOTOR  
-                    <br>Funciones: Soporte técnico, mantenimiento de equipos, gestión de incidencias y administración de sistemas.
-                </li>
-                <li>
-                    <strong>Analistas Nivel 1 </strong> – [Arus-IBM - Banco de Occidente ]  
-                    <br>Funciones: Atención a usuarios, resolución de fallas, instalación de software y hardware.
-                </li>
-            </ul>
-        </div>
-
-        <!-- Habilidades -->
-        <div class="section">
-            <h2>Habilidades</h2>
-            <ul>
-                <li>Soporte técnico y mesa de ayuda</li>
-                <li>C++, java, HTML, CSS y JavaScript</li>
-                <li>Administración de sistemas</li>
-                <li>Trabajo en equipo</li>
-                <li>Comunicación efectiva</li>
-                <li>Adaptacion al Cambio </li>
-            </ul>
-        </div>
-
-        <!-- Idiomas -->
-        <div class="section">
-            <h2>Idiomas</h2>
-            <ul>
-                <li>Español – Nativo</li>
-                <li>Inglés – Básico / Intermedio</li>
-            </ul>
-        </div>
-
     </div>
 
+    <script>
+        // JavaScript: Lógica de interacción
+        function mostrarMensaje() {
+            const nombre = document.getElementById('user-name').innerText;
+            alert("Gracias por tu interés. Has contactado a " + nombre + ". Pronto recibirás una respuesta.");
+        }
+
+        // Efecto simple al pasar el mouse por la foto
+        const photo = document.getElementById('profile-pic');
+        photo.addEventListener('mouseover', () => {
+            photo.style.transform = "scale(1.05)";
+            photo.style.transition = "0.3s";
+        });
+        photo.addEventListener('mouseout', () => {
+            photo.style.transform = "scale(1)";
+        });
+    </script>
 </body>
 </html>
 
