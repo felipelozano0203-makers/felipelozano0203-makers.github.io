@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Vida - Andres Felipe Campos Lozano</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --delete-color: #e74c3c;
+            --success-color: #27ae60;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            padding: 20px;
+            color: #333;
+        }
+
+        /* --- SELECTOR DE EDICIÓN --- */
+        .selector-container {
+            max-width: 900px;
+            margin: 0 auto 15px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        #categoria {
+            padding: 10px;
+            width: 60%;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* --- FORMULARIO QUE SE MUEVE --- */
+        #form-dinamico {
+            background: #f9f9f9;
+            border: 2px dashed var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            display: none; /* Se activa por JS */
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group { display: flex; gap: 10px; }
+        .input-group input { padding: 10px; flex: 1; border: 1px solid #ccc; border-radius: 4px; }
+        
+        .btn-add {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* --- ESTILOS DE LA HOJA DE VIDA --- */
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .photo-container img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-color); }
+
+        .name-container { margin-left: 25px; }
+        .name-container h1 { margin: 0; color: var(--primary-color); font-size: 2.2rem; }
+        .name-container p { margin: 5px 0 0; color: var(--accent-color); font-weight: bold; }
+
+        .summary-box { margin-bottom: 30px; line-height: 1.8; }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        h2 { border-left: 5px solid var(--accent-color); padding-left: 10px; color: var(--primary-color); text-transform: uppercase; font-size: 1.1rem; }
+
+        .item { margin-bottom: 20px; position: relative; }
+        .del-btn {
+            background: var(--delete-color);
+            color: white;
+            border: none;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .skills-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+        .skills-list li { background: #ecf0f1; padding: 6px 12px; border-radius: 20px; font-size: 0.9rem; }
+
+        @media (max-width: 600px) { .main-content { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; } .name-container { margin-left: 0; margin-top: 15px; } }
+    </style>
+</head>
+<body>
+
+    <div class="selector-container">
+        <strong>¿Deseas agregar información?</strong> 
+        <select id="categoria">
+            <option value="none">-- Selecciona sección --</option>
+            <option value="exp">Historial Laboral</option>
+            <option value="skill">Habilidades / Skills</option>
+        </select>
+    </div>
+
+    <div id="form-dinamico">
+        <div class="input-group">
+            <input type="text" id="in-principal" placeholder="Nombre">
+            <input type="text" id="in-detalle" placeholder="Detalle">
+        </div>
+        <button id="btn-save" class="btn-add">Añadir ahora</button>
+    </div>
+
+    <div class="resume-container">
+        <header>
+            <div class="photo-container">
+                <img src="imagenn.jpeg" alt="Andres Felipe Campos Lozano">
+            </div>
+            <div class="name-container">
+                <h1>Andres Felipe campos Lozano</h1>
+                <p>Tecnólogo en Sistemas & Ingeniería Mecatrónica</p>
+            </div>
+        </header>
+
+        <section class="summary-box">
+            <h2>Perfil Profesional</h2>
+            <p>
+                Tecnólogo en Desarrollo de Sistemas de Información y Software e Ingeniería Mecatrónica. 
+                Experiencia de más de un año en soporte técnico de sistemas brindando soluciones efectivas 
+                en hardware, software y formación a usuarios.
+            </p>
+        </section>
+
+        <div class="main-content">
+            <div class="left-col">
+                <section id="sec-experiencia">
+                    <h2>Experiencia Laboral</h2>
+                    <div id="lista-exp">
+                        <div class="item">
+                            <button class="del-btn" onclick="this.parentElement.remove()">Eliminar</button>
+                            <h3>Auxiliar soporte técnico - COOMOTOR</h3>
+                            <span style="color: #7f8c8d;">Agosto 2022 - Marzo 2024</span>
+                            <p>Soporte técnico integral, mantenimiento preventivo y correctivo.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Formación Académica</h2>
+                    <div class="item">
+                        <h3>Tecnólogo en Desarrollo de Sistemas</h3>
+                        <p>Universidad Santiago de Cali (En curso)</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-col">
+                <section id="sec-skills">
+                    <h2>Habilidades (Skills)</h2>
+                    <ul class="skills-list" id="lista-skill">
+                        <li>Java <button class="del-btn" onclick="this.parentElement.remove()">x</button></li>
+                        <li>Python <button class="del-btn" onclick="this.parentElement.remove()">x</button></li>
+                        <li>Soporte Técnico <button class="del-btn" onclick="this.parentElement.remove()">x</button></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categoriaSelect = document.getElementById('categoria');
+        const formDinamico = document.getElementById('form-dinamico');
+        const btnSave = document.getElementById('btn-save');
+        
+        const inPri = document.getElementById('in-principal');
+        const inSec = document.getElementById('in-detalle');
+
+        const secExp = document.getElementById('sec-experiencia');
+        const secSkill = document.getElementById('sec-skills');
+
+        const listExp = document.getElementById('lista-exp');
+        const listSkill = document.getElementById('lista-skill');
+
+        // Mover el formulario según la selección
+        categoriaSelect.addEventListener('change', () => {
+            const opcion = categoriaSelect.value;
+            if (opcion === 'exp') {
+                formDinamico.style.display = 'flex';
+                secExp.appendChild(formDinamico); 
+                inPri.placeholder = "Cargo o Empresa";
+                inSec.placeholder = "Fecha (ej: 2024)";
+            } else if (opcion === 'skill') {
+                formDinamico.style.display = 'flex';
+                secSkill.appendChild(formDinamico);
+                inPri.placeholder = "Nueva Skill";
+                inSec.placeholder = "Nivel (opcional)";
+            } else {
+                formDinamico.style.display = 'none';
+            }
+        });
+
+        // Lógica para añadir (Shopping List Style)
+        btnSave.addEventListener('click', () => {
+            const tit = inPri.value;
+            const det = inSec.value;
+            const tipo = categoriaSelect.value;
+
+            if (tit === "") return;
+
+            if (tipo === 'exp') {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.innerHTML = `<button class="del-btn">Eliminar</button><h3>${tit}</h3><span style="color: #7f8c8d;">${det}</span><p>Nuevo registro agregado.</p>`;
+                div.querySelector('.del-btn').onclick = () => div.remove();
+                listExp.appendChild(div);
+            } else if (tipo === 'skill') {
+                const li = document.createElement('li');
+                li.innerHTML = `${tit} <button class="del-btn" style="margin-left:5px">x</button>`;
+                li.querySelector('.del-btn').onclick = () => li.remove();
+                listSkill.appendChild(li);
+            }
+
+            inPri.value = ""; inSec.value = ""; inPri.focus();
+        });
+    </script>
+</body>
+</html>
