@@ -3,124 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Hoja de Vida</title>
+    <title>Hoja de Vida - Andres Felipe Campos Lozano</title>
     <style>
-        /* CSS: Estilos y Diseño */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
+            --primary-color: #000000;
+            --accent-color: #000000;
+            --delete-color: #3801ff;
+            --bg-color: #000101;    
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
             margin: 0;
             padding: 20px;
         }
 
         .resume-container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* Encabezado: Foto y Nombre */
+        /* Encabezado */
         header {
             display: flex;
             align-items: center;
-            border-bottom: 2px solid var(--accent-color);
+            gap: 25px;
+            border-bottom: 3px solid var(--accent-color);
             padding-bottom: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .photo-container img {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-color);
+            border: 3px solid #eee;
         }
 
-        .name-container {
-            margin-left: 30px;
+        h1 { margin: 0; color: var(--primary-color); font-size: 2.2rem; }
+        .subtitle { color: var(--accent-color); font-weight: bold; margin: 5px 0; }
+
+        /* Estilos de Secciones Desplegables */
+        details {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        .name-container h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        summary {
+            padding: 15px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
             color: var(--primary-color);
-        }
-
-        /* Presentación */
-        .summary {
-            margin-bottom: 30px;
-            font-style: italic;
-            color: var(--secondary-color);
-        }
-
-        /* Cuerpo Central */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        h2 {
-            border-left: 5px solid var(--accent-color);
-            padding-left: 10px;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            font-size: 1.2rem;
-        }
-
-        .section { margin-bottom: 20px; }
-
-        .item { margin-bottom: 15px; }
-
-        .item h3 { margin: 0; font-size: 1.1rem; }
-
-        .date { font-size: 0.9rem; color: #7f8c8d; }
-
-        /* Habilidades e Idiomas */
-        .skills-list, .languages-list {
             list-style: none;
-            padding: 0;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .skills-list li, .languages-list li {
-            background: #ecf0f1;
-            margin: 5px 0;
-            padding: 8px 12px;
+        summary:hover { background: #edf2f7; }
+
+        .content {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Formulario de Edición dentro de cada sección */
+        .editor-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            display: inline-block;
-            margin-right: 5px;
         }
 
-        /* Botón de Interacción (JS) */
-        .contact-btn {
+        .add-btn {
             background: var(--accent-color);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 8px 15px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        .contact-btn:hover { background: #2980b9; }
+        /* Lista de elementos */
+        ul { list-style: none; padding: 0; }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: 0.2s;
+        }
+
+        li:hover { background: #fdfdfd; }
+
+        .delete-btn {
+            background: none;
+            border: 1px solid var(--delete-color);
+            color: var(--delete-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .delete-btn:hover { background: var(--delete-color); color: white; }
+
+        .item-text { flex: 1; padding-right: 15px; }
 
         @media (max-width: 600px) {
             header { flex-direction: column; text-align: center; }
-            .name-container { margin-left: 0; margin-top: 15px; }
-            .main-content { grid-template-columns: 1fr; }
+            .editor-controls { flex-direction: column; }
         }
     </style>
 </head>
@@ -129,101 +140,122 @@
     <div class="resume-container">
         <header>
             <div class="photo-container">
-                <img src="imagenn.jpeg" alt="Foto de Perfil" id="profile-pic">
+                <img src="imagen.jpg" alt="Foto Andres Felipe" id="profile-pic">
             </div>
             <div class="name-container">
-                <h1 id="user-name"></h1>
-                <p>Tecnólogo en Desarrollo de Sistemas de Información y Software e Ingeniería Mecatrónica. </p>
-                <button class="contact-btn" onclick="mostrarMensaje()">Contactar</button>
+                <h1 id="user-name">Andres Felipe Campos Lozano</h1>
+                <p class="subtitle">Desarrollador de Software e Ingeniero Mecatrónico</p>
+                <p style="font-size: 0.9rem; color: #666;">Cali, Colombia</p>
             </div>
         </header>
 
-        <section class="summary">
-            <h2>Sobre Mí</h2>
-            <p>Experiencia de más de un año en soporte técnico de sistemas brindando soluciones efectivas en hardware, software y formación a usuarios.
-Soy una persona muy curiosa, con alta capacidad de aprendizaje autónomo, apasionado por la tecnología. Me gusta explorar y comprender nuevas herramientas o sistemas por iniciativa propia. Tengo orientación al servicio, buena comunicación y me interesa seguir desarrollándome en empresas o áreas de tecnología, sistemas y desarrollo de software.
-Plataformas, herramientas y lenguajes: Outlook, Teams, OneDrive, software contable (STONE), C++, JAVA, Python, OneShape, Autocad, Solidworks.>
+        <section id="sobre-mi">
+            <h2 style="color: var(--primary-color); border-left: 5px solid var(--accent-color); padding-left: 10px;">Sobre Mí</h2>
+            <p style="text-align: justify; line-height: 1.6;">
+                Tecnólogo en Desarrollo de Sistemas de Información y Software e Ingeniería Mecatrónica. Experiencia de más de un año en soporte técnico de sistemas brindando soluciones efectivas en hardware, software y formación a usuarios. 
+                Soy una persona muy curiosa, con alta capacidad de aprendizaje autónomo, apasionado por la tecnología. Me gusta explorar y comprender nuevas herramientas o sistemas por iniciativa propia. Tengo orientación al servicio, buena comunicación y me interesa seguir desarrollándome en empresas o áreas de tecnología, sistemas y desarrollo de software.
+                <br><br>
+                <strong>Plataformas, herramientas y lenguajes:</strong> Outlook, Teams, OneDrive, software contable (STONE), C++, JAVA, Python, OneShape, Autocad, Solidworks.
+            </p>
         </section>
 
-        <div class="main-content">
-            <div class="left-col">
-                <section class="section">
-                    <h2>Experiencia Laboral</h2>
-                    <div class="item">
-                        <h3>Auxiliar soporte técnico en tecnología COOMOTOR</h3>
-                        <span class="date">Agosto 2022 - Marzo 2024</span>
-                        <p>Brindé soporte técnico presencial y remoto a equipos de cómputo y sistemas CCTV (cámaras de videovigilancia).
-•
-Formación y soporte a usuarios internos sobre el uso de herramientas colaborativas y software empresarial como: Outlook, Microsoft Teams y OneDrive, FISC, PXP, STONE (contable),
-•
-Instalación, mantenimiento y reparación de hardware conforme a manuales técnicos.
-•
-Instrucción personalizada a colaboradores sobre el uso adecuado de herramientas informáticas.
-•
-Generación de informes técnicos de mantenimiento y registro de incidencias (tickets - backlog) según normativa interna</p>
-                    </div>
-                    <div class="item">
-                        <h3>Práctica Empresarial – Soporte técnico en sistemas COOMOTOR </h3>
-                        <span class="date">Julio 2022 - Octubre 2022</span>
-                        <p>Mantener y Reparar equipos de cómputo según procedimiento técnico.
-•
-Instalar y ensamblar equipos de cómputo según manual y especificaciones técnicas.
-•
-Atender requerimientos de los usuarios de acuerdo con procedimientos técnicos y normativa vigente.
-•
-Registrar información de acuerdo con normativa y procedimiento técnico.</p>
-                    </div>
-                </section>
-
-                <section class="section">
-                    <h2>Formación Académica</h2>
-                    <div class="item">
-                        <h3>Tecnólogo en Desarrollo de Sistemas de Información y Software</h3>
-                        <p>Universidad Santiago de Cali 2024 – en curso</p>
-                    </div>
-                </section>
+        <details>
+            <summary>Historial Laboral <span>+</span></summary>
+            <div class="content">
+                <div class="editor-controls">
+                    <input type="text" id="input-laboral" placeholder="Ej: Auxiliar Soporte - Coomotor (2022-2024)">
+                    <button class="add-btn" onclick="addItem('lista-laboral', 'input-laboral')">Agregar</button>
+                </div>
+                <ul id="lista-laboral">
+                    <li>
+                        <span class="item-text"><strong>Auxiliar soporte técnico en tecnología COOMOTOR:</strong> Soporte presencial/remoto y gestión de CCTV (2022 - 2024)</span>
+                        <button class="delete-btn">Eliminar</button>
+                    </li>
+                </ul>
             </div>
+        </details>
 
-            <div class="right-col">
-                <section class="section">
-                    <h2>Habilidades</h2>
-                    <ul class="skills-list">
-                        <li>HTML5 / CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>React.js</li>
-                        <li>Node.js</li>
-                        <li>Git & GitHub</li>
-                    </ul>
-                </section>
-
-                <section class="section">
-                    <h2>Idiomas</h2>
-                    <ul class="languages-list">
-                        <li><strong>Español:</strong> Nativo</li>
-                        <li><strong>Inglés:</strong> C1 (Avanzado)</li>
-                        <li><strong>Francés:</strong> B1 (Intermedio)</li>
-                    </ul>
-                </section>
+        <details>
+            <summary>Historial Académico <span>+</span></summary>
+            <div class="content">
+                <div class="editor-controls">
+                    <input type="text" id="input-academico" placeholder="Ej: Tecnólogo en Desarrollo - USC (En curso)">
+                    <button class="add-btn" onclick="addItem('lista-academico', 'input-academico')">Agregar</button>
+                </div>
+                <ul id="lista-academico">
+                    <li>
+                        <span class="item-text">Tecnólogo en Desarrollo de Sistemas de Información y Software - Universidad Santiago de Cali</span>
+                        <button class="delete-btn">Eliminar</button>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </details>
+
+        <details>
+            <summary>Habilidades e Idiomas <span>+</span></summary>
+            <div class="content">
+                <div class="editor-controls">
+                    <input type="text" id="input-habilidades" placeholder="Ej: Python - Avanzado / Inglés - C1">
+                    <button class="add-btn" onclick="addItem('lista-habilidades', 'input-habilidades')">Agregar</button>
+                </div>
+                <ul id="lista-habilidades">
+                    <li><span class="item-text">Python, C++, Java</span><button class="delete-btn">Eliminar</button></li>
+                    <li><span class="item-text">Inglés: C1 (Avanzado)</span><button class="delete-btn">Eliminar</button></li>
+                </ul>
+            </div>
+        </details>
     </div>
 
     <script>
-        // JavaScript: Lógica de interacción
-        function mostrarMensaje() {
-            const nombre = document.getElementById('user-name').innerText;
-            alert("Gracias por tu interés. Has contactado a " + nombre + ". Pronto recibirás una respuesta.");
+        // Función universal para agregar elementos (Basada en tu lógica de Shopping List)
+        function addItem(listaId, inputId) {
+            const lista = document.getElementById(listaId);
+            const input = document.getElementById(inputId);
+            const valor = input.value.trim();
+
+            if (valor === "") {
+                alert("Por favor escribe algo antes de agregar.");
+                return;
+            }
+
+            // Crear elementos
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            const btnEliminar = document.createElement("button");
+
+            // Configurar contenido
+            span.className = "item-text";
+            span.textContent = valor;
+            
+            btnEliminar.textContent = "Eliminar";
+            btnEliminar.className = "delete-btn";
+
+            // Lógica para eliminar
+            btnEliminar.addEventListener('click', () => {
+                lista.removeChild(li);
+            });
+
+            // Ensamblar y mostrar
+            li.appendChild(span);
+            li.appendChild(btnEliminar);
+            lista.appendChild(li);
+
+            // Limpiar input y devolver foco
+            input.value = "";
+            input.focus();
         }
 
-        // Efecto simple al pasar el mouse por la foto
+        // Configurar los botones "Eliminar" que ya existen por defecto al cargar la página
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
+        });
+
+        // Efecto visual en la foto
         const photo = document.getElementById('profile-pic');
-        photo.addEventListener('mouseover', () => {
-            photo.style.transform = "scale(1.05)";
-            photo.style.transition = "0.3s";
-        });
-        photo.addEventListener('mouseout', () => {
-            photo.style.transform = "scale(1)";
-        });
+        photo.onmouseover = () => photo.style.transform = "scale(1.05) transition 0.3s";
+        photo.onmouseout = () => photo.style.transform = "scale(1)";
     </script>
 </body>
 </html>
