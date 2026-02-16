@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Vida - Andres Felipe Campos Lozano</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --accent-color: #000000;
+            --delete-color: #3801ff;
+            --bg-color: #000101;    
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Encabezado */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .photo-container img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #eee;
+        }
+
+        h1 { margin: 0; color: var(--primary-color); font-size: 2.2rem; }
+        .subtitle { color: var(--accent-color); font-weight: bold; margin: 5px 0; }
+
+        /* Estilos de Secciones Desplegables */
+        details {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 15px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        summary:hover { background: #edf2f7; }
+
+        .content {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Formulario de Edición dentro de cada sección */
+        .editor-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .add-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Lista de elementos */
+        ul { list-style: none; padding: 0; }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: 0.2s;
+        }
+
+        li:hover { background: #fdfdfd; }
+
+        .delete-btn {
+            background: none;
+            border: 1px solid var(--delete-color);
+            color: var(--delete-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .delete-btn:hover { background: var(--delete-color); color: white; }
+
+        .item-text { flex: 1; padding-right: 15px; }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; }
+            .editor-controls { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        <header>
+            <div class="photo-container">
+                <img src="imagen.jpg" alt="Foto Andres Felipe" id="profile-pic">
+            </div>
+            <div class="name-container">
+                <h1 id="user-name">Andres Felipe Campos Lozano</h1>
+                <p class="subtitle">Desarrollador de Software e Ingeniero Mecatrónico</p>
+                <p style="font-size: 0.9rem; color: #666;">Cali, Colombia</p>
+            </div>
+        </header>
+
+        <section id="sobre-mi">
+            <h2 style="color: var(--primary-color); border-left: 5px solid var(--accent-color); padding-left: 10px;">Sobre Mí</h2>
+            <p style="text-align: justify; line-height: 1.6;">
+                Tecnólogo en Desarrollo de Sistemas de Información y Software e Ingeniería Mecatrónica. Experiencia de más de un año en soporte técnico de sistemas brindando soluciones efectivas en hardware, software y formación a usuarios. 
+                Soy una persona muy curiosa, con alta capacidad de aprendizaje autónomo, apasionado por la tecnología. Me gusta explorar y comprender nuevas herramientas o sistemas por iniciativa propia. Tengo orientación al servicio, buena comunicación y me interesa seguir desarrollándome en empresas o áreas de tecnología, sistemas y desarrollo de software.
+                <br><br>
+                <strong>Plataformas, herramientas y lenguajes:</strong> Outlook, Teams, OneDrive, software contable (STONE), C++, JAVA, Python, OneShape, Autocad, Solidworks.
+            </p>
+        </section>
+
+        <details>
+            <summary>Historial Laboral <span>+</span></summary>
+            <div class="content">
+                <div class="editor-controls">
+                    <input type="text" id="input-laboral" placeholder="Ej: Auxiliar Soporte - Coomotor (2022-2024)">
+                    <button class="add-btn" onclick="addItem('lista-laboral', 'input-laboral')">Agregar</button>
+                </div>
+                <ul id="lista-laboral">
+                    <li>
+                        <span class="item-text"><strong>Auxiliar soporte técnico en tecnología COOMOTOR:</strong> Soporte presencial/remoto y gestión de CCTV (2022 - 2024)</span>
+                        <button class="delete-btn">Eliminar</button>
+                    </li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Historial Académico <span>+</span></summary>
+            <div class="content">
+                <div class="editor-controls">
+                    <input type="text" id="input-academico" placeholder="Ej: Tecnólogo en Desarrollo - USC (En curso)">
+                    <button class="add-btn" onclick="addItem('lista-academico', 'input-academico')">Agregar</button>
+                </div>
+                <ul id="lista-academico">
+                    <li>
+                        <span class="item-text">Tecnólogo en Desarrollo de Sistemas de Información y Software - Universidad Santiago de Cali</span>
+                        <button class="delete-btn">Eliminar</button>
+                    </li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Habilidades e Idiomas <span>+</span></summary>
+            <div class="content">
+                <div class="editor-controls">
+                    <input type="text" id="input-habilidades" placeholder="Ej: Python - Avanzado / Inglés - C1">
+                    <button class="add-btn" onclick="addItem('lista-habilidades', 'input-habilidades')">Agregar</button>
+                </div>
+                <ul id="lista-habilidades">
+                    <li><span class="item-text">Python, C++, Java</span><button class="delete-btn">Eliminar</button></li>
+                    <li><span class="item-text">Inglés: C1 (Avanzado)</span><button class="delete-btn">Eliminar</button></li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <script>
+        // Función universal para agregar elementos (Basada en tu lógica de Shopping List)
+        function addItem(listaId, inputId) {
+            const lista = document.getElementById(listaId);
+            const input = document.getElementById(inputId);
+            const valor = input.value.trim();
+
+            if (valor === "") {
+                alert("Por favor escribe algo antes de agregar.");
+                return;
+            }
+
+            // Crear elementos
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            const btnEliminar = document.createElement("button");
+
+            // Configurar contenido
+            span.className = "item-text";
+            span.textContent = valor;
+            
+            btnEliminar.textContent = "Eliminar";
+            btnEliminar.className = "delete-btn";
+
+            // Lógica para eliminar
+            btnEliminar.addEventListener('click', () => {
+                lista.removeChild(li);
+            });
+
+            // Ensamblar y mostrar
+            li.appendChild(span);
+            li.appendChild(btnEliminar);
+            lista.appendChild(li);
+
+            // Limpiar input y devolver foco
+            input.value = "";
+            input.focus();
+        }
+
+        // Configurar los botones "Eliminar" que ya existen por defecto al cargar la página
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
+        });
+
+        // Efecto visual en la foto
+        const photo = document.getElementById('profile-pic');
+        photo.onmouseover = () => photo.style.transform = "scale(1.05) transition 0.3s";
+        photo.onmouseout = () => photo.style.transform = "scale(1)";
+    </script>
+</body>
+</html>
